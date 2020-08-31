@@ -5,7 +5,16 @@ class Screen1 extends StatefulWidget {
   _Screen1State createState() => _Screen1State();
 }
 
-class _Screen1State extends State<Screen1> {
+class _Screen1State extends State<Screen1> with SingleTickerProviderStateMixin {
+  TabController tabController;
+  int pageIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    tabController = TabController(length: 4, vsync: this, initialIndex: 0);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,50 +30,54 @@ class _Screen1State extends State<Screen1> {
             Column(
               children: [
                 Container(
-                  height: 60,
+                  height: 100,
                   width: MediaQuery.of(context).size.width,
-                  // color: Colors.pink,
-                  child: AppBar(
-                    backgroundColor: Colors.pink,
-                    title: Text("Message"),
-                    centerTitle: true,
-                    elevation: 0,
-                    leading: Icon(Icons.arrow_back_ios),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Text("Inbox", style: TextStyle(color: Colors.white)),
-                        Text(
-                          "Group",
-                          style: TextStyle(
-                            color: Colors.white.withOpacity(0.4),
+                  child: PreferredSize(
+                    preferredSize: Size.fromHeight(100),
+                    child: AppBar(
+                      backgroundColor: Colors.pink,
+                      title: Text("Message"),
+                      centerTitle: true,
+                      elevation: 0,
+                      leading: Icon(Icons.arrow_back_ios),
+                      bottom: TabBar(
+                        controller: tabController,
+                        unselectedLabelColor: Colors.white.withOpacity(0.4),
+                        onTap: (int index) {
+                          pageIndex = index;
+                        },
+                        indicatorColor: Colors.transparent,
+                        tabs: [
+                          Tab(
+                            child: Text(
+                              "Inbox",
+                            ),
                           ),
-                        ),
-                        Text(
-                          "Online",
-                          style: TextStyle(
-                            color: Colors.white.withOpacity(0.4),
+                          Tab(
+                            child: Text(
+                              "Group",
+                            ),
                           ),
-                        ),
-                        Text(
-                          "History",
-                          style: TextStyle(
-                            color: Colors.white.withOpacity(0.4),
+                          Tab(
+                            child: Text(
+                              "Online",
+                            ),
                           ),
-                        ),
-                      ],
+                          Tab(
+                            child: Text(
+                              "History",
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-                SizedBox(height: 40),
                 Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 23.0, right: 23),
+                    child: TabBarView(controller: tabController, children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 23.0, right: 23, top: 30),
                     child: ListView(
                       children: [
                         Text(
@@ -74,19 +87,44 @@ class _Screen1State extends State<Screen1> {
                               0.8,
                             ),
                           ),
-                        ),SizedBox(height:10),chatItems(),chatItems(),chatItems(),
+                        ),
                         SizedBox(height: 10),
-                        Container(height: 165, color: Colors.red),
-                        Container(height: 165, color: Colors.white),
-                        Container(height: 165, color: Colors.red),
-                        Container(height: 65, color: Colors.white),
-                        Container(height: 165, color: Colors.red),
-                        Container(height: 165, color: Colors.white),
-                        Container(height: 165, color: Colors.red)
+                        chatItems("Charles Valery",
+                            "Hahaha, can you help me today?", "22:35"),
+                        chatItems("Ellise Remmi",
+                            "Alright sir, tomorrow i will come", "22:00"),
+                        chatItems("Rosallie Adelyn",
+                            "Yes sure I will appreciate it.", "21:35"),
+                        chatItems(
+                            "Charles Lueis",
+                            "The beginning of my life with my good old friend is lovely.",
+                            "21:15"),
+                        Text(
+                          "Tuesday, 22",
+                          style: TextStyle(
+                            color: Colors.grey.withOpacity(
+                              0.8,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        chatItems("Charles Valery",
+                            "Hahaha, can you help me today?", "22:35"),
+                        chatItems("Ellise Remmi",
+                            "Alright sir, tomorrow i will come", "22:00"),
+                        chatItems("Rosallie Adelyn",
+                            "Yes sure I will appreciate it.", "21:35"),
+                        chatItems(
+                            "Charles Lueis",
+                            "The beginning of my life with my good old friend is lovely.",
+                            "21:15"),
                       ],
                     ),
                   ),
-                )
+                  Text("page 1"),
+                  Text("page 2"),
+                  Text("page 3")
+                ]))
               ],
             ),
           ],
@@ -95,12 +133,18 @@ class _Screen1State extends State<Screen1> {
     );
   }
 
-  Widget chatItems() {
+  Widget chatItems(userName, message, time) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 10,left:2,right:2),
+      padding: const EdgeInsets.only(bottom: 18, left: 2, right: 2),
       child: Container(
         height: 70,
-        decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.grey[300].withOpacity(0.7),blurRadius: 2,spreadRadius: 2)],
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+                color: Colors.grey[300].withOpacity(0.7),
+                blurRadius: 2,
+                spreadRadius: 2)
+          ],
           color: Colors.white,
           borderRadius: BorderRadius.circular(
             50,
@@ -124,23 +168,47 @@ class _Screen1State extends State<Screen1> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text(
-                      "Charles Valery",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
+                    Container(
+                      width: 150,
+                      child: Text(
+                        userName,
+                        maxLines: 1,
+                        overflow: TextOverflow.fade,
+                        softWrap: false,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
-                    // SizedBox(width: 30),
-                    Text("22:35",
-                        style: TextStyle(
-                            fontSize: 14, color: Colors.pinkAccent[400]))
+                    SizedBox(width: 40),
+                    Text(
+                      time,
+                      style: TextStyle(
+                        fontSize: 12,
+                        letterSpacing: -0.6,
+                        color: Colors.pinkAccent[400],
+                      ),
+                    ),
                   ],
                 ),
                 Row(
-                  children: [Text("Hahaha, can you help me today?")],
+                  children: [
+                    Container(
+                      width: 200,
+                      child: Text(
+                        message,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: Colors.grey[500].withOpacity(0.7),
+                          fontSize: 13,
+                        ),
+                      ),
+                    ),
+                  ],
                 )
               ],
             )
@@ -174,64 +242,3 @@ class CurvePainter extends CustomPainter {
     return true;
   }
 }
-
-// class CurvePainter extends CustomPainter {
-//   @override
-//   void paint(Canvas canvas, Size size) {
-//     Path path = Path();
-//     Paint paint = Paint();
-
-//     path = Path();
-
-//     var sw = size.width;
-//     var sh = size.height;
-//     // path.lineTo(0, size.height * 0.5);
-//     // // path.cubicTo(0, sh / 5, sw , sh / 3, sw, sh / 3);
-//     // // path.cubicTo(0, sh * 0.5, sw / 2, sh * 0.5,  (sw / 3), sh * 0.5);
-
-//     // // // top bottom-2
-//     // path.cubicTo(0,  sh*0.5,  sw / 2, sh ,
-//     //      sw / 2,  sh);
-//     //      path.lineTo(sw, size.height );
-
-//     // // bottom top-2
-//     // // path.lineTo(7 * sw / 12, 0);
-//     // // path.cubicTo(
-//     // // 7 * sw / 12, 2 * sh / 5, 7 * sw / 12, 0, 8 * sw / 12,0);
-//     // path.cubicTo( sw / 2, sh, sw ,  sh*0.5,
-//     //     sw, sh * .5);
-
-//     path = Path();
-//     path.lineTo(0, size.height * 0.50);
-
-//     path.quadraticBezierTo(size.width * 0.10, size.height * 0.55,
-//         size.width * 0.50, 1.1 * size.height * 0.99);
-//     path.quadraticBezierTo(
-//       size.width * 0.50,
-//       1.1 * size.height * 0.99,
-//       size.width * 0.96,
-//       size.height * 0.50,
-//     );
-//     // path.cubicTo(sw * .96, sh * .5, sw, sh/2.1, sw, sh/2.05);
-
-//     // path.quadraticBezierTo(
-//     //       size.width / 2, size.height / 2, size.width, size.height * 0.25);
-
-//     //  path.quadraticBezierTo(size.width*0.10, size.height*0.55, size.width*0.22, size.height*0.70);
-//     // path.quadraticBezierTo(size.width*0.30, size.height*0.90, size.width*0.40, size.height*0.75);
-//     // path.quadraticBezierTo(size.width*0.52, size.height*0.50, size.width*0.65, size.height*0.70);
-//     // path.quadraticBezierTo(size.width*0.75, size.height*0.85, size.width, size.height*0.60);
-//     path.quadraticBezierTo(sw * .96, sh * .40, sw, sh/2);
-//     // path.lineTo(sw,sh*.45);
-//     path.lineTo(size.width, 0);
-//     path.close();
-
-//     paint.color = Colors.red;
-//     canvas.drawPath(path, paint);
-//   }
-
-//   @override
-//   bool shouldRepaint(CustomPainter oldDelegate) {
-//     return oldDelegate != this;
-//   }
-// }
