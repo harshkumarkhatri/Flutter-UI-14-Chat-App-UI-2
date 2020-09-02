@@ -35,7 +35,7 @@ class _Screen2State extends State<Screen2> {
                       )
                     ],
                     backgroundColor: Colors.transparent,
-                    title: Text("Message"),
+                    title: Text("Elise Remmi"),
                     centerTitle: true,
                     elevation: 0,
                     leading: GestureDetector(

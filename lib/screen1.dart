@@ -37,7 +37,7 @@ class _Screen1State extends State<Screen1> with SingleTickerProviderStateMixin {
                     preferredSize: Size.fromHeight(100),
                     child: AppBar(
                       backgroundColor: Colors.pink,
-                      title: Text("Message"),
+                      title: Text("MESSAGE"),
                       centerTitle: true,
                       elevation: 0,
                       leading: Icon(Icons.arrow_back_ios),

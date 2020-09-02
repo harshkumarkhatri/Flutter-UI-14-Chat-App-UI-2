@@ -13,8 +13,10 @@ Some snaps from the UI:-
 * Full video:-
 * Snaps:-
 <p>
-<img src="screenshots/1.jpg" height=400>
-<img src="screenshots/2.jpg" height=400>
+<img src="screenshots/1.jpeg" height=400>
+<img src="screenshots/2.jpeg" height=400>
+<img src="screenshots/3.jpeg" height=400>
+<img src="screenshots/4.jpeg" height=400>
 </p>
 
 
