@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ui_14_chat_ui_2/screen2.dart';
 
 class Screen1 extends StatefulWidget {
   @override
@@ -134,85 +135,95 @@ class _Screen1State extends State<Screen1> with SingleTickerProviderStateMixin {
   }
 
   Widget chatItems(userName, message, time) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 18, left: 2, right: 2),
-      child: Container(
-        height: 70,
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-                color: Colors.grey[300].withOpacity(0.7),
-                blurRadius: 2,
-                spreadRadius: 2)
-          ],
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(
-            50,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => Screen2(),
           ),
-        ),
-        child: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Container(
-                height: 50,
-                width: 50,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.red,
+        );
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 18, left: 2, right: 2),
+        child: Container(
+          height: 70,
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.grey[300].withOpacity(0.7),
+                  blurRadius: 2,
+                  spreadRadius: 2)
+            ],
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(
+              50,
+            ),
+          ),
+          child: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Container(
+                  height: 50,
+                  width: 50,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.red,
+                  ),
                 ),
               ),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Container(
-                      width: 150,
-                      child: Text(
-                        userName,
-                        maxLines: 1,
-                        overflow: TextOverflow.fade,
-                        softWrap: false,
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Container(
+                        width: 150,
+                        child: Text(
+                          userName,
+                          maxLines: 1,
+                          overflow: TextOverflow.fade,
+                          softWrap: false,
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(width: 40),
-                    Text(
-                      time,
-                      style: TextStyle(
-                        fontSize: 12,
-                        letterSpacing: -0.6,
-                        color: Colors.pinkAccent[400],
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Container(
-                      width: 200,
-                      child: Text(
-                        message,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
+                      SizedBox(width: 40),
+                      Text(
+                        time,
                         style: TextStyle(
-                          color: Colors.grey[500].withOpacity(0.7),
-                          fontSize: 13,
+                          fontSize: 12,
+                          letterSpacing: -0.6,
+                          color: Colors.pinkAccent[400],
                         ),
                       ),
-                    ),
-                  ],
-                )
-              ],
-            )
-          ],
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                        width: 200,
+                        child: Text(
+                          message,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            color: Colors.grey[500].withOpacity(0.7),
+                            fontSize: 13,
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -224,7 +235,7 @@ class CurvePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     var paint = Paint();
     paint.color = Colors.pinkAccent[400];
-    paint.style = PaintingStyle.fill; // Change this to fill
+    paint.style = PaintingStyle.fill;
 
     var path = Path();
 

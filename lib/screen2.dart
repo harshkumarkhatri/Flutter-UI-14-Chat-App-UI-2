@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:swipedetector/swipedetector.dart';
 
 class Screen2 extends StatefulWidget {
   @override
@@ -37,46 +38,60 @@ class _Screen2State extends State<Screen2> {
                     title: Text("Message"),
                     centerTitle: true,
                     elevation: 0,
-                    leading: Icon(Icons.arrow_back_ios),
+                    leading: GestureDetector(
+                      child: Icon(Icons.arrow_back_ios),
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                    ),
                   ),
                 ),
                 Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 15, right: 15),
-                    child: ListView(
-                      children: [
-                        senderDetails("Elise Remmi", 0123456789, "22:35",
-                            "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"),
-                        message(
-                            "Aliright sir, tommorow I will come with my friend and get some nuggets in your table.",
-                            "not me"),
-                        receiverDetails("Me", 9876543210, "22:45",
-                            "https://img.freepik.com/free-psd/young-hipster-man-with-his-arms-crossed_1368-25112.jpg?size=338&ext=jpg"),
-                        message(
-                            "Thsi will be really a great paltforma nf a dmeeting wher  jknr jnionfg jkohnfio nioejfiopmlk fiojodc m jkoniofmniofnmknbkgbnuiognjekgnnvo noi oi fjoi nfonrothoijhf hfroinoirfgjeiofvnrotnmk g jior jrio",
-                            "sent"),
-                        senderDetails("Elise Remmi", 0123456789, "22:35",
-                            "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"),
-                        message(
-                            "Aliright sir, tommorow I will come with my friend and get some nuggets in your table.",
-                            "not me"),
-                        receiverDetails("Me", 9876543210, "22:45",
-                            "https://img.freepik.com/free-psd/young-hipster-man-with-his-arms-crossed_1368-25112.jpg?size=338&ext=jpg"),
-                        message(
-                            "Thsi will be really a great paltforma nf a dmeeting wher  jknr jnionfg jkohnfio nioejfiopmlk fiojodc m jkoniofmniofnmknbkgbnuiognjekgnnvo noi oi fjoi nfonrothoijhf hfroinoirfgjeiofvnrotnmk g jior jrio",
-                            "sent"),
-                        senderDetails("Elise Remmi", 0123456789, "22:35",
-                            "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"),
-                        message(
-                            "Aliright sir, tommorow I will come with my friend and get some nuggets in your table.",
-                            "not me"),
-                        receiverDetails("Me", 9876543210, "22:45",
-                            "https://img.freepik.com/free-psd/young-hipster-man-with-his-arms-crossed_1368-25112.jpg?size=338&ext=jpg"),
-                        message(
-                            "Thsi will be really a great paltforma nf a dmeeting wher  jknr jnionfg jkohnfio nioejfiopmlk fiojodc m jkoniofmniofnmknbkgbnuiognjekgnnvo noi oi fjoi nfonrothoijhf hfroinoirfgjeiofvnrotnmk g jior jrio",
-                            "sent"),
-                        SizedBox(height: 80)
-                      ],
+                  child: SwipeDetector(
+                    onSwipeLeft: () {
+                      print("left");
+                    },
+                    onSwipeRight: () {
+                      print("Right");
+                      Navigator.pop(context);
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 15, right: 15),
+                      child: ListView(
+                        children: [
+                          senderDetails("Elise Remmi", 0123456789, "22:35",
+                              "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"),
+                          message(
+                              "Aliright sir, tommorow I will come with my friend and get some nuggets in your table.",
+                              "not me"),
+                          receiverDetails("Me", 9876543210, "22:45",
+                              "https://img.freepik.com/free-psd/young-hipster-man-with-his-arms-crossed_1368-25112.jpg?size=338&ext=jpg"),
+                          message(
+                              "Thsi will be really a great paltforma nf a dmeeting wher  jknr jnionfg jkohnfio nioejfiopmlk fiojodc m jkoniofmniofnmknbkgbnuiognjekgnnvo noi oi fjoi nfonrothoijhf hfroinoirfgjeiofvnrotnmk g jior jrio",
+                              "sent"),
+                          senderDetails("Elise Remmi", 0123456789, "22:35",
+                              "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"),
+                          message(
+                              "Aliright sir, tommorow I will come with my friend and get some nuggets in your table.",
+                              "not me"),
+                          receiverDetails("Me", 9876543210, "22:45",
+                              "https://img.freepik.com/free-psd/young-hipster-man-with-his-arms-crossed_1368-25112.jpg?size=338&ext=jpg"),
+                          message(
+                              "Thsi will be really a great paltforma nf a dmeeting wher  jknr jnionfg jkohnfio nioejfiopmlk fiojodc m jkoniofmniofnmknbkgbnuiognjekgnnvo noi oi fjoi nfonrothoijhf hfroinoirfgjeiofvnrotnmk g jior jrio",
+                              "sent"),
+                          senderDetails("Elise Remmi", 0123456789, "22:35",
+                              "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"),
+                          message(
+                              "Aliright sir, tommorow I will come with my friend and get some nuggets in your table.",
+                              "not me"),
+                          receiverDetails("Me", 9876543210, "22:45",
+                              "https://img.freepik.com/free-psd/young-hipster-man-with-his-arms-crossed_1368-25112.jpg?size=338&ext=jpg"),
+                          message(
+                              "Thsi will be really a great paltforma nf a dmeeting wher  jknr jnionfg jkohnfio nioejfiopmlk fiojodc m jkoniofmniofnmknbkgbnuiognjekgnnvo noi oi fjoi nfonrothoijhf hfroinoirfgjeiofvnrotnmk g jior jrio",
+                              "sent"),
+                          SizedBox(height: 80)
+                        ],
+                      ),
                     ),
                   ),
                 )
@@ -269,9 +284,7 @@ class _Screen2State extends State<Screen2> {
         bottom: 4,
       ),
       child: Container(
-        // height: 40,
         decoration: BoxDecoration(
-          // color: Colors.blue,
           gradient: LinearGradient(
             colors: [
               Colors.pink,

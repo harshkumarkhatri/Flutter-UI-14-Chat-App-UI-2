@@ -1,6 +1,7 @@
 # flutter_ui_14_chat_ui_2
 
-A new Flutter project.
+A new Flutter project.check if we can add a swipe to 
+right feature for back screen like it is in snapchat chatting app.
 
 ## Getting Started
 
