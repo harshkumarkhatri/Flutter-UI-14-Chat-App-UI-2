@@ -1,6 +1,6 @@
 # flutter_ui_14_chat_ui_2
 
-This is another chat UI which i have created in flutter.
+This is an another amazing  Chat UI which i have created using flutter App development.
 <br>
 **About the UI**:-<br>
 When you open the app you have widgets aligned one over the other in a stack. The bottom most widget is a screen which has a design drawn on it with the help of Path. Over this we have the app bar tab bar navigation and list view which is holding chat items. The tab bar items are modified to match the designs.<br>
